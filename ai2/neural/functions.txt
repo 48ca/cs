@@ -1,0 +1,28 @@
+x as a scalar: (Not)
+f(x) = 1 / (1 + e^(-wx + b) )
+
+x as a vector:
+f(x) = 1 / (1 + e^(-(wDOTx) + b) )
+w is a vector
+
+in other words:
+f(x1,x2) = 1 / (1 + e^(-(x1 + x2)*w + b) )
+
+Not
+	0 -> 1
+	1 -> 0
+
+And
+	0, 0 -> 0
+	0, 1 -> 0
+	1, 0 -> 0
+	1, 1 -> 1
+
+Or
+	0, 0 -> 0
+	0, 1 -> 1
+	1, 0 -> 1
+	1, 1 -> 1
+
+For Not:
+	Sum( Error^2 ) = (f(0) - 1)^2 + (f(1) - 0)^2

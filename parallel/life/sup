@@ -1,0 +1,20 @@
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+X Error of failed request:  GLXBadContext
+  Major opcode of failed request:  153 (GLX)
+  Minor opcode of failed request:  6 (X_GLXIsDirect)
+  Serial number of failed request:  44
+  Current serial number in output stream:  43
+X Error of failed request:  BadValue (integer parameter out of range for operation)
+  Major opcode of failed request:  153 (GLX)
+  Minor opcode of failed request:  24 (X_GLXCreateNewContext)
+  Value in failed request:  0x0
+  Serial number of failed request:  43
+  Current serial number in output stream:  44
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 20464 on
+node hopper exiting without calling "finalize". This may
+have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+--------------------------------------------------------------------------
+make: *** [run] Error 1

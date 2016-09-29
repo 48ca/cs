@@ -1,0 +1,37 @@
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000 1261.968 1261.968 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 aids.py:108(<listcomp>)
+  1230440    7.447    0.000    7.447    0.000 aids.py:115(swap)
+     6476   31.303    0.005   62.004    0.010 aids.py:118(allswaps)
+ 6404/186   14.221    0.002 1256.618    6.756 aids.py:130(findmin)
+     3211    0.096    0.000    0.096    0.000 aids.py:162(<listcomp>)
+    77184    0.449    0.000    0.449    0.000 aids.py:163(<lambda>)
+        1    0.021    0.021 1257.681 1257.681 aids.py:203(shuffleall)
+        1    0.000    0.000    0.001    0.001 aids.py:244(<listcomp>)
+        1    0.001    0.001    0.001    0.001 aids.py:25(printboard)
+  1220880  752.954    0.001 1179.794    0.001 aids.py:49(conflicts)
+  1191167  189.984    0.000  319.364    0.000 aids.py:52(<listcomp>)
+        1    4.284    4.284 1261.968 1261.968 aids.py:7(main)
+     3534    0.098    0.000    0.156    0.000 random.py:220(_randbelow)
+      186    0.033    0.000    0.191    0.001 random.py:258(shuffle)
+       28    0.000    0.000    0.000    0.000 {built-in method builtins.chr}
+        1    0.000    0.000 1261.968 1261.968 {built-in method builtins.exec}
+       86    0.001    0.000    0.001    0.000 {built-in method builtins.iter}
+  1191354    6.802    0.000    6.802    0.000 {built-in method builtins.len}
+     6390    0.161    0.000    0.161    0.000 {built-in method builtins.min}
+       86    0.001    0.000    0.001    0.000 {built-in method builtins.next}
+ 23823400  129.381    0.000  129.381    0.000 {built-in method builtins.ord}
+        9    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+     3211    0.645    0.000    1.094    0.000 {built-in method builtins.sorted}
+ 16276302  100.729    0.000  100.729    0.000 {method 'add' of 'set' objects}
+  1233534    6.729    0.000    6.729    0.000 {method 'append' of 'list' objects}
+     3534    0.022    0.000    0.022    0.000 {method 'bit_length' of 'int' objects}
+  1230440    9.074    0.000    9.074    0.000 {method 'copy' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       91    0.002    0.000    0.002    0.000 {method 'format' of 'str' objects}
+     5481    0.037    0.000    0.037    0.000 {method 'getrandbits' of '_random.Random' objects}
+  1230628    7.471    0.000    7.471    0.000 {method 'join' of 'str' objects}
+       86    0.021    0.000    0.021    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+

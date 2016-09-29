@@ -1,0 +1,64 @@
+#!/usr/bin/env python2
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+
+from random import random
+from node import Node
+
+NODE_COUNT = 50000
+Z = 2
+
+nodes = [Node(i) for i in range(NODE_COUNT)]
+np_noderange = np.arange(NODE_COUNT)
+
+degs = np.zeros(NODE_COUNT)
+for i in range(3):
+    for j in list({1,2,3} - {i}):
+        nodes[i].add_node(nodes[j])
+    degs[i] = 2
+
+# Done initializing nodes
+
+for n in nodes:
+    # ra = [nodes[int(random()*NODE_COUNT)] for i in range(Z)]
+    rai = np.random.choice(np_noderange, Z, p=(degs/np.sum(degs)))
+    ra = [nodes[i] for i in rai]
+    n.add_nodes(ra)
+    for nta in ra:
+        nta.add_node(n)
+    degs[n.id] = n.deg
+    sys.stdout.write("Connecting: {:.2f}%           \r".format(100.0*n.id/NODE_COUNT))
+    sys.stdout.flush()
+print("Done                     ")
+
+# Gather data
+
+tot = np.sum(degs)
+
+ZM = 0
+d = {i:0 for i in range(NODE_COUNT)}
+for n in nodes:
+    deg = len(n.nodes)
+    d[deg]+=1
+    if deg > ZM: ZM = deg
+print("Maximum degree: {}".format(ZM))
+ZM += 1
+
+ys = []
+for i in range(ZM):
+    ys.append(float(d[i])/tot)
+
+ind = np.arange(ZM)
+width = .35
+
+fig, ax = plt.subplots()
+# ax.set_xscale("log", nonposx='clip')
+ax.set_yscale("log", nonposy='clip')
+rects = ax.bar(ind, ys, width=width, color='r')
+
+ax.set_ylabel('Log of Nodes (% of total)')
+ax.set_xlabel('Degree')
+
+plt.show()

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://www.easyctf.com/programming -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#7B1FA2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="EasyCTF is a national, online, high school hacking competition run by students. EasyCTF aims to open the door to computer science and cybersecurity for students all around the country.">
+
+<meta name="robots" content="noindex">
+
+<title>Programming - EasyCTF 2015</title>
+
+<script type="text/javascript" async="" src="./Programming - EasyCTF 2015_files/ga.js"></script><script async="" src="./Programming - EasyCTF 2015_files/cloudflare.min.js"></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:1447207681,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"9255a28ff6788737a0e4c4a5dba09b16",petok:"ab388b5f5cdb7ebbb171c0554422d558acb329fc-1447270127-1800",zone:"easyctf.com",rocket:"0",apps:{"ga_key":{"ua":"UA-32258920-2","ga_bs":"2"}}}];!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=247a80cdfa/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+//]]>
+</script>
+<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/main.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/bootstrap-select.min.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/base16-dark.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/base16-light.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/eclipse.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/monokai.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/solarized.css">
+
+	<link rel="stylesheet" href="./Programming - EasyCTF 2015_files/codemirror.css">
+
+
+<link rel="icon" href="https://www.easyctf.com/images/logo.ico">
+
+<script src="./Programming - EasyCTF 2015_files/jquery.min.js" integrity="sha384-fj9YEHKNa/e0CNquG4NcocjoyMATYo1k2Ff5wGB42C/9AwOlJjDoySPtNJalccfI" crossorigin="anonymous"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style>
+<script src="./Programming - EasyCTF 2015_files/jquery-ui.min.js" integrity="sha384-vIp38BeRN82wlvPB8/vo/5e0J1/gn7WfUf1Qq9bdh79iMPxjry99thNkscQG1b8C" crossorigin="anonymous"></script>
+<script src="./Programming - EasyCTF 2015_files/bootstrap.min.js" integrity="sha384-VI5+XuguQ/l3kUhh4knz7Hxptx47wpQbVRDnp8v7Vvuhzwn1PEYb/uvtH6KLxv6d" crossorigin="anonymous"></script>
+
+<script src="./Programming - EasyCTF 2015_files/easyctf.js"></script>
+
+<script src="./Programming - EasyCTF 2015_files/underscore-min.js" integrity="sha384-FZY+KSLVXVyc1qAlqH9oCx1JEOlQh6iXfw3o2n3Iy32qGjXmUPWT9I0Z9e9wxYe3" crossorigin="anonymous"></script>
+<script src="./Programming - EasyCTF 2015_files/jquery.cookie.min.js" integrity="sha384-tSi+YsgNwyohDGfW/VhY51IK3RKAPYDcj1sNXJ16oRAyDP++K0NCzSCUW78EMFmf" crossorigin="anonymous"></script>
+
+
+	<script src="./Programming - EasyCTF 2015_files/bootstrap-select.min.js"></script>
+
+	<script src="./Programming - EasyCTF 2015_files/codemirror.js"></script>
+
+	<script src="./Programming - EasyCTF 2015_files/clike.js"></script>
+
+	<script src="./Programming - EasyCTF 2015_files/python.js"></script>
+
+	<script src="./Programming - EasyCTF 2015_files/timeago.js"></script>
+
+	<script src="./Programming - EasyCTF 2015_files/programming.js"></script>
+
+	<script type="text/javascript">
+/* <![CDATA[ */
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32258920-2']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+(function(b){(function(a){"__CF"in b&&"DJS"in b.__CF?b.__CF.DJS.push(a):"addEventListener"in b?b.addEventListener("load",a,!1):b.attachEvent("onload",a)})(function(){"FB"in b&&"Event"in FB&&"subscribe"in FB.Event&&(FB.Event.subscribe("edge.create",function(a){_gaq.push(["_trackSocial","facebook","like",a])}),FB.Event.subscribe("edge.remove",function(a){_gaq.push(["_trackSocial","facebook","unlike",a])}),FB.Event.subscribe("message.send",function(a){_gaq.push(["_trackSocial","facebook","send",a])}));"twttr"in b&&"events"in twttr&&"bind"in twttr.events&&twttr.events.bind("tweet",function(a){if(a){var b;if(a.target&&a.target.nodeName=="IFRAME")a:{if(a=a.target.src){a=a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);b=0;for(var c;c=a[b];++b)if(c.indexOf("url")===0){b=unescape(c.split("=")[1]);break a}}b=void 0}_gaq.push(["_trackSocial","twitter","tweet",b])}})})})(window);
+/* ]]> */
+</script>
+</head>
+	<body>
+		<div id="site-message" style="margin:0"></div>
+		<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand navbar-brand-lime dropdown-toggle" href="https://www.easyctf.com/" id="main-brand"><img src="./Programming - EasyCTF 2015_files/logo.png" width="24" height="24" style="display:inline-block;">&nbsp;EasyCTF 2015</a>
+			<ul class="nav navbar-nav" id="ctf-selector-menu-list">
+				<li class="dropdown">
+					<a class="dropdown-toggle" id="dropdown-ctf-selector" data-toggle="dropdown" href="https://www.easyctf.com/programming#">
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" id="ctf-selector-menu">
+						<li class="easyctf2014-link"><a role="menuitem" tabindex="-1" href="https://2014.easyctf.com/" class="easyctf2014-link">EasyCTF 2014</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="collapse navbar-collapse" id="main-navbar">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-info-circle fa-fw"></i> About <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li id="link_about"><a href="https://www.easyctf.com/about"><i class="fa fa-info-circle fa-fw"></i> About</a></li>
+						<li id="link_sponsors"><a href="https://www.easyctf.com/sponsors"><i class="fa fa-suitcase fa-fw"></i> Sponsors</a></li>
+						<li id="link_rules"><a href="https://www.easyctf.com/rules"><i class="fa fa-trophy fa-fw"></i> Rules and Prizes</a></li>
+					</ul>
+				</li>
+				<li id="link_scoreboard"><a href="https://www.easyctf.com/scoreboard"><i class="fa fa-bars fa-fw"></i> Scoreboard</a></li>
+				<li id="link_updates"><a href="https://www.easyctf.com/updates"><i class="fa fa-refresh fa-fw"></i> Updates</a></li>
+				<li id="link_learn"><a href="https://www.easyctf.com/learn"><i class="fa fa-book fa-fw"></i> Learn</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="competition-nav" style="">
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-pencil fa-fw"></i> Problems <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li id="link_problems"><a href="https://www.easyctf.com/problems"><i class="fa fa-pencil fa-fw"></i> Problems</a></li>
+						<li id="link_shell"><a href="https://www.easyctf.com/shell"><i class="fa fa-terminal fa-fw"></i> Shell</a></li>
+						<li id="link_programming" class="active"><a href="./Programming - EasyCTF 2015_files/Programming - EasyCTF 2015.html"><i class="fa fa-code fa-fw"></i> Programming</a></li>
+					</ul>
+				</li>
+				<li id="link_chat"><a href="https://www.easyctf.com/chat"><i class="fa fa-comments fa-fw"></i> Chat</a></li>
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="account_link"><img src="./Programming - EasyCTF 2015_files/bcbcb4757c25d1f01e0264c2431de0a9" class="navatar">jamesthoughton</span> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li id="link_account"><a href="https://www.easyctf.com/account"><i class="fa fa-sliders fa-fw"></i> Settings</a></li>
+						<li id="link_logout"><a href="https://www.easyctf.com/api/user/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="login-nav" style="display:none;">
+				<li id="link_chat"><a href="https://www.easyctf.com/chat"><i class="fa fa-comments fa-fw"></i> Chat</a></li>
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="account_link"><img src="./Programming - EasyCTF 2015_files/bcbcb4757c25d1f01e0264c2431de0a9" class="navatar">jamesthoughton</span> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li id="link_account"><a href="https://www.easyctf.com/account"><i class="fa fa-sliders fa-fw"></i> Settings</a></li>
+						<li id="link_logout"><a href="https://www.easyctf.com/api/user/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="noteam-nav" style="display:none;">
+				<li id="link_findteam"><a href="https://www.easyctf.com/findteam"><i class="fa fa-user-plus fa-fw"></i> Find Team</a></li>
+				<li id="link_chat"><a href="https://www.easyctf.com/chat"><i class="fa fa-comments fa-fw"></i> Chat</a></li>
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="account_link"><img src="./Programming - EasyCTF 2015_files/bcbcb4757c25d1f01e0264c2431de0a9" class="navatar">jamesthoughton</span> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li id="link_account"><a href="https://www.easyctf.com/account"><i class="fa fa-sliders fa-fw"></i> Settings</a></li>
+						<li id="link_logout"><a href="https://www.easyctf.com/api/user/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="teacher-nav" style="display:none;">
+				<li id="link_classroom"><a href="https://www.easyctf.com/classroom"><i class="fa fa-group fa-fw"></i> Classroom</a></li>
+				<li id="link_chat"><a href="https://www.easyctf.com/chat"><i class="fa fa-comments fa-fw"></i> Chat</a></li>
+				<li class="dropdown">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="account_link"><img src="./Programming - EasyCTF 2015_files/bcbcb4757c25d1f01e0264c2431de0a9" class="navatar">jamesthoughton</span> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li id="link_account"><a href="https://www.easyctf.com/account"><i class="fa fa-sliders fa-fw"></i> Settings</a></li>
+						<li id="link_logout"><a href="https://www.easyctf.com/api/user/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="nologin-nav" style="display:none;">
+				<li id="link_register"><a href="https://www.easyctf.com/register"><i class="fa fa-check-square fa-fw"></i> Register</a></li>
+				<li id="link_login"><a href="https://www.easyctf.com/login"><i class="fa fa-sign-in"></i> Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<script type="text/javascript">
+try {
+	$("#link_" + location.pathname.substring(1)).addClass("active");
+} catch(e) {
+	// do nothing
+}
+</script>
+		<div id="main-content">
+			<div class="page-header page-header-top page-header-danger">
+	<div class="container">
+		<h1>Programming</h1>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="well">
+			<p>Write your program here, and press the <span class="label label-success"><i class="fa fa-cogs"></i> Run Code</span> when you're done. Make sure you are selecting the correct problem and language for your program. Alternatively, upload a file rather than write the code in-browser. Your previous submissions are shown under the editor.</p>
+			<p>If you're using <b>Java</b>: make sure you call your public class <code>program</code>. Your code will be saved to and compiled from <code>program.java</code>.</p>
+		</div>
+		<div id="upload_msg"></div>
+		<div class="jumbotron">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mininav" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="javascript:void(0);">Programming</a>
+					</div>
+					<div class="collapse navbar-collapse" id="mininav">
+						<form class="navbar-form navbar-left" action="https://www.easyctf.com/return%20false;">
+							<ul class="nav navbar-nav">
+								<a class="btn btn-success" href="javascript:void(0);" onclick="javascript:runCode();" data-toggle="tooltip" data-placement="top" title="" data-original-title="Shortcut: Ctrl+Enter"><i class="fa fa-cogs"></i> Run Code</a>
+								<div class="form-group">
+									<select name="language" id="language" class="selectpicker" data-live-search="false" data-header="Language" data-width="auto" onchange="javascript:changeLanguage();" style="display: none;">
+										<option value="java">Java</option>
+										<option value="python2" selected="">Python 2</option>
+										<option value="python3">Python 3</option>
+									</select><div class="btn-group bootstrap-select" style="width: 108px;"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="language" title="Python 3"><span class="filter-option pull-left">Python 3</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open" style="min-width: 0px; padding-top: 0px; max-height: 490px; overflow: hidden; min-height: 38px;"><div class="popover-title"><button type="button" class="close" aria-hidden="true">×</button>Language</div><ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 445px; overflow-y: auto; min-height: 0px;"><li data-original-index="0"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Java&lt;/span&gt;"><span class="text">Java</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Python 2&lt;/span&gt;"><span class="text">Python 2</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2" class="selected"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Python 3&lt;/span&gt;"><span class="text">Python 3</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div></div>
+								</div>
+								<div class="form-group">
+									<select name="pid" id="pid" class="selectpicker" data-live-search="true" data-header="Problem ID" data-width="auto" style="display: none;"><option value="hello-world">Hello World!</option><option value="addition">Sum It!</option><option value="can-you-even">Can You Even???</option><option value="math-class">Math Class</option><option value="looking-for-letters">Looking for Letters</option><option value="string-change">String Change</option><option value="piglatin1">Oink</option><option value="piglatin2">Oink Oink</option></select><div class="btn-group bootstrap-select" style="width: 217px;"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="pid" title="String Change"><span class="filter-option pull-left">String Change</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open" style="min-width: 0px; padding-top: 0px; max-height: 490px; overflow: hidden; min-height: 181px;"><div class="popover-title"><button type="button" class="close" aria-hidden="true">×</button>Problem ID</div><div class="bs-searchbox"><input type="text" class="input-block-level form-control" autocomplete="off"></div><ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 392px; overflow-y: auto; min-height: 83px;"><li data-original-index="0" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Hello World!&lt;/span&gt;"><span class="text">Hello World!</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Sum It!&lt;/span&gt;"><span class="text">Sum It!</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Can You Even???&lt;/span&gt;"><span class="text">Can You Even???</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Math Class&lt;/span&gt;"><span class="text">Math Class</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Looking for Letters&lt;/span&gt;"><span class="text">Looking for Letters</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5" class="selected active"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;String Change&lt;/span&gt;"><span class="text">String Change</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="6" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Oink&lt;/span&gt;"><span class="text">Oink</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="7" class=""><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;Oink Oink&lt;/span&gt;"><span class="text">Oink Oink</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div></div>
+								</div>
+							</ul>
+						</form>
+						<form class="navbar-form navbar-right" action="https://www.easyctf.com/return%20false;">
+							<ul class="nav navbar-nav">
+								<div class="form-group">
+									<select name="theme" id="theme" class="selectpicker" data-live-search="false" data-header="Editor Theme" data-width="auto" style="display: none;">
+										<option>base16-dark</option>
+										<option>base16-light</option>
+										<option selected="">eclipse</option>
+										<option>monokai</option>
+										<option>solarized dark</option>
+										<option>solarized light</option>
+									</select><div class="btn-group bootstrap-select" style="width: 139px;"><button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="theme" title="eclipse"><span class="filter-option pull-left">eclipse</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open" style="min-width: 0px; padding-top: 0px; max-height: 485px; overflow: hidden; min-height: 133px;"><div class="popover-title"><button type="button" class="close" aria-hidden="true">×</button>Editor Theme</div><ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 435px; overflow-y: auto; min-height: 83px;"><li data-original-index="0"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;base16-dark&lt;/span&gt;"><span class="text">base16-dark</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;base16-light&lt;/span&gt;"><span class="text">base16-light</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2" class="selected"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;eclipse&lt;/span&gt;"><span class="text">eclipse</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;monokai&lt;/span&gt;"><span class="text">monokai</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;solarized dark&lt;/span&gt;"><span class="text">solarized dark</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" data-normalized-text="&lt;span class=&quot;text&quot;&gt;solarized light&lt;/span&gt;"><span class="text">solarized light</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div></div>
+								</div>
+							</ul>
+						</form>
+					</div>
+				</div>
+			</nav>
+			<div id="editor-container" style="padding-bottom:10px;"><div class="CodeMirror cm-s-eclipse          CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 124px; left: 249px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 29px;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; min-width: 499px; min-height: 143px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 220px; top: 120px; height: 15px;">&nbsp;</div></div><div class="CodeMirror-code"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">1</div></div><pre><span style="padding-right: 0.1px;"><span class="cm-variable">stuff</span> = <span class="cm-builtin">open</span>(<span class="cm-string">"string-change.in"</span>,<span class="cm-string">"r"</span>).<span class="cm-variable">read</span>().<span class="cm-variable">split</span>(<span class="cm-string">"\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">2</div></div><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">array</span> = <span class="cm-variable">stuff</span>[<span class="cm-number">0</span>]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">3</div></div><pre><span style="padding-right: 0.1px;"><span class="cm-variable">string</span> = <span class="cm-builtin">list</span>(<span class="cm-variable">stuff</span>[<span class="cm-number">1</span>])</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">4</div></div><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">array</span> = <span class="cm-variable">array</span>[<span class="cm-number">1</span>:<span class="cm-builtin">len</span>(<span class="cm-variable">array</span>)<span class="cm-operator">-</span><span class="cm-number">1</span>].<span class="cm-variable">split</span>(<span class="cm-string">','</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">5</div></div><pre class=""><span style="padding-right: 0.1px;"><span class="cm-keyword">for</span> <span class="cm-variable">i</span> <span class="cm-operator">in</span> <span class="cm-builtin">range</span>(<span class="cm-builtin">len</span>(<span class="cm-variable">string</span>)):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">6</div></div><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-keyword">if</span> <span class="cm-variable">i</span> <span class="cm-operator">in</span> <span class="cm-variable">array</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">7</div></div><pre class=""><span style="padding-right: 0.1px;">    <span class="cm-variable">string</span>[<span class="cm-variable">i</span>] = <span class="cm-builtin">chr</span>(<span class="cm-builtin">ord</span>(<span class="cm-variable">string</span>[<span class="cm-variable">i</span>]) <span class="cm-operator">+</span> <span class="cm-number">1</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">8</div></div><pre class=""><span style="padding-right: 0.1px;"><span class="cm-variable">out</span> = <span class="cm-builtin">open</span>(<span class="cm-string">"string-change.out"</span>,<span class="cm-string">"w"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="position: absolute; left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 20px;">9</div></div><pre><span style="padding-right: 0.1px;"><span class="cm-variable">out</span>.<span class="cm-variable">write</span>(<span class="cm-variable">string</span> <span class="cm-operator">+</span> <span class="cm-string">"\n"</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 143px;"></div><div class="CodeMirror-gutters" style="height: 300px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 28px;"></div></div></div></div></div>
+			<form class="form-horizontal" id="upload_form" enctype="multipart/form-data">
+				<fieldset>
+					<div class="row">
+						<div class="col-sm-10">
+							<div class="input-group">
+								<span class="input-group-btn">
+									<span class="btn btn-primary btn-file">
+										Browse…
+										<input type="file" name="file" id="file">
+									</span>
+								</span>
+								<input class="form-control" readonly="" type="text" id="file_text" placeholder="(optional) upload">
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<a class="btn btn-primary" id="upload_btn"><i class="fa fa-upload"></i> Upload!</a>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	
+	<div class="row">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Timestamp</th>
+					<th>Problem ID</th>
+					<!-- <th>Signal</th> -->
+					<th style="max-width:40vh;">Message</th>
+					<th>Flag</th>
+				</tr>
+			</thead>
+			<tbody id="submissions_container"><tr id="rrprog_82b00e898f6346ecbdb9cdcb7a67d143"><td colspan="5"></td></tr><tr id="rprog_82b00e898f6346ecbdb9cdcb7a67d143"><td><div class="dropdown"><a class="btn btn-default" id="optbtnprog_82b00e898f6346ecbdb9cdcb7a67d143" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#">6</a><ul class="dropdown-menu" aria-labelledby="optbtnprog_82b00e898f6346ecbdb9cdcb7a67d143"><li><a href="javascript:void(0);" onclick="javascript:viewLog(&quot;prog_82b00e898f6346ecbdb9cdcb7a67d143&quot;);"><i class="fa fa-eye fa-fw"></i> View Log</a></li><li><a href="javascript:void(0);" onclick="javascript:deleteRun(&quot;prog_82b00e898f6346ecbdb9cdcb7a67d143&quot;);"><i class="fa fa-trash fa-fw"></i> Remove This Run</a></li></ul></div></td><td><span class="timeago" title="2015-11-10T23:31:16.973Z">about 20 hours ago</span></td><td>looking-for-letters</td><td style="max-width:40vh;">Correct!</td><td><span class="flag_hide"><input type="password" class="form-control" value="easyctf{filtering_the_#s_out}" onfocus="javascript:this.type=&#39;text&#39;;" onblur="javascript:this.type=&#39;password&#39;;" size="3"></span></td></tr><tr id="rrprog_342981d8af9940a58a4469baff1f8e02"><td colspan="5"></td></tr><tr id="rprog_342981d8af9940a58a4469baff1f8e02"><td><div class="dropdown"><a class="btn btn-default" id="optbtnprog_342981d8af9940a58a4469baff1f8e02" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#">5</a><ul class="dropdown-menu" aria-labelledby="optbtnprog_342981d8af9940a58a4469baff1f8e02"><li><a href="javascript:void(0);" onclick="javascript:viewLog(&quot;prog_342981d8af9940a58a4469baff1f8e02&quot;);"><i class="fa fa-eye fa-fw"></i> View Log</a></li><li><a href="javascript:void(0);" onclick="javascript:deleteRun(&quot;prog_342981d8af9940a58a4469baff1f8e02&quot;);"><i class="fa fa-trash fa-fw"></i> Remove This Run</a></li></ul></div></td><td><span class="timeago" title="2015-11-10T23:25:32.284Z">about 20 hours ago</span></td><td>math-class</td><td style="max-width:40vh;">Correct!</td><td><span class="flag_hide"><input type="password" class="form-control" value="easyctf{have_y0u_had_enough_of_math_in_sk0ol_yet}" onfocus="javascript:this.type=&#39;text&#39;;" onblur="javascript:this.type=&#39;password&#39;;" size="3"></span></td></tr><tr id="rrprog_44488fba19714110aaf98a8addfe165b"><td colspan="5"></td></tr><tr id="rprog_44488fba19714110aaf98a8addfe165b"><td><div class="dropdown"><a class="btn btn-default" id="optbtnprog_44488fba19714110aaf98a8addfe165b" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#">4</a><ul class="dropdown-menu" aria-labelledby="optbtnprog_44488fba19714110aaf98a8addfe165b"><li><a href="javascript:void(0);" onclick="javascript:viewLog(&quot;prog_44488fba19714110aaf98a8addfe165b&quot;);"><i class="fa fa-eye fa-fw"></i> View Log</a></li><li><a href="javascript:void(0);" onclick="javascript:deleteRun(&quot;prog_44488fba19714110aaf98a8addfe165b&quot;);"><i class="fa fa-trash fa-fw"></i> Remove This Run</a></li></ul></div></td><td><span class="timeago" title="2015-11-06T17:19:44.722Z">5 days ago</span></td><td>piglatin1</td><td style="max-width:40vh;">Correct!</td><td><span class="flag_hide"><input type="password" class="form-control" value="easyctf{atinl4y_easyyay_3noughyay_orfay_ayay_1gpay!}" onfocus="javascript:this.type=&#39;text&#39;;" onblur="javascript:this.type=&#39;password&#39;;" size="3"></span></td></tr><tr id="rrprog_4fea491091e341ec9d692fe660e56484"><td colspan="5"></td></tr><tr id="rprog_4fea491091e341ec9d692fe660e56484"><td><div class="dropdown"><a class="btn btn-default" id="optbtnprog_4fea491091e341ec9d692fe660e56484" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#">3</a><ul class="dropdown-menu" aria-labelledby="optbtnprog_4fea491091e341ec9d692fe660e56484"><li><a href="javascript:void(0);" onclick="javascript:viewLog(&quot;prog_4fea491091e341ec9d692fe660e56484&quot;);"><i class="fa fa-eye fa-fw"></i> View Log</a></li><li><a href="javascript:void(0);" onclick="javascript:deleteRun(&quot;prog_4fea491091e341ec9d692fe660e56484&quot;);"><i class="fa fa-trash fa-fw"></i> Remove This Run</a></li></ul></div></td><td><span class="timeago" title="2015-11-04T18:05:00.139Z">7 days ago</span></td><td>can-you-even</td><td style="max-width:40vh;">Correct!</td><td><span class="flag_hide"><input type="password" class="form-control" value="easyctf{?v=8ruJBKFrRCk}" onfocus="javascript:this.type=&#39;text&#39;;" onblur="javascript:this.type=&#39;password&#39;;" size="3"></span></td></tr><tr id="rrprog_47c37bce8b5b47d1a30bd415ea8a8530"><td colspan="5"></td></tr><tr id="rprog_47c37bce8b5b47d1a30bd415ea8a8530"><td><div class="dropdown"><a class="btn btn-default" id="optbtnprog_47c37bce8b5b47d1a30bd415ea8a8530" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#">2</a><ul class="dropdown-menu" aria-labelledby="optbtnprog_47c37bce8b5b47d1a30bd415ea8a8530"><li><a href="javascript:void(0);" onclick="javascript:viewLog(&quot;prog_47c37bce8b5b47d1a30bd415ea8a8530&quot;);"><i class="fa fa-eye fa-fw"></i> View Log</a></li><li><a href="javascript:void(0);" onclick="javascript:deleteRun(&quot;prog_47c37bce8b5b47d1a30bd415ea8a8530&quot;);"><i class="fa fa-trash fa-fw"></i> Remove This Run</a></li></ul></div></td><td><span class="timeago" title="2015-11-04T17:59:47.184Z">7 days ago</span></td><td>addition</td><td style="max-width:40vh;">Correct!</td><td><span class="flag_hide"><input type="password" class="form-control" value="easyctf{&#39;twas_sum_EZ_programming,_am_I_rite?}" onfocus="javascript:this.type=&#39;text&#39;;" onblur="javascript:this.type=&#39;password&#39;;" size="3"></span></td></tr><tr id="rrprog_edd1af9094d64c798e65929824249597"><td colspan="5"></td></tr><tr id="rprog_edd1af9094d64c798e65929824249597"><td><div class="dropdown"><a class="btn btn-default" id="optbtnprog_edd1af9094d64c798e65929824249597" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#">1</a><ul class="dropdown-menu" aria-labelledby="optbtnprog_edd1af9094d64c798e65929824249597"><li><a href="javascript:void(0);" onclick="javascript:viewLog(&quot;prog_edd1af9094d64c798e65929824249597&quot;);"><i class="fa fa-eye fa-fw"></i> View Log</a></li><li><a href="javascript:void(0);" onclick="javascript:deleteRun(&quot;prog_edd1af9094d64c798e65929824249597&quot;);"><i class="fa fa-trash fa-fw"></i> Remove This Run</a></li></ul></div></td><td><span class="timeago" title="2015-11-04T17:45:40.927Z">7 days ago</span></td><td>hello-world</td><td style="max-width:40vh;">Correct!</td><td><span class="flag_hide"><input type="password" class="form-control" value="easyctf{welc0me_two_easyCtf}" onfocus="javascript:this.type=&#39;text&#39;;" onblur="javascript:this.type=&#39;password&#39;;" size="3"></span></td></tr></tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="stdoutModal" tabindex="-1" role="dialog" aria-labelledby="stdoutModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<h4 class="modal-title" id="stdoutModalLabel"></h4>
+			</div>
+			<div class="modal-body" id="stdoutModalBody">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Done</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.btn-file {
+		position: relative;
+		overflow: hidden;
+	}
+	.btn-file input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		min-width: 100%;
+		min-height: 100%;
+		font-size: 100px;
+		text-align: right;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		background: red;
+		cursor: inherit;
+		display: block;
+	}
+	input[readonly] {
+		background-color: white !important;
+		cursor: text !important;
+	}
+</style>
+
+<script type="text/javascript">
+	var changeLanguage = function() {
+		window.editor.setOption("mode", { "python2": "python", "python3": "python", "java": "text/x-java" }[$("#language").val()]);
+	}
+	$(document).on('change', '#file', function() {
+		var input = $(this), numFiles = input.get(0).files ? input.get(0).files.length : 1,
+		label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('change', [numFiles, label]);
+	});
+	$(document).ready(function() {
+		$('#file').on('change', function(event, numFiles, label) {
+			var input = $("#file_text"),
+				log = numFiles > 1 ? numFiles + ' files selected' : label;
+			if (input.length) {
+				input.val(log);
+			} else {
+				if (log) undefined;
+			}
+		});
+	});
+</script>
+		</div>
+		<footer id="main-footer">
+			<div class="well" style="margin-bottom:0;padding:32px auto;">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<center>
+				<p>
+					<a href="http://facebook.com/easyctf" target="_blank" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><span class="fa fa-facebook fa-fw"></span></a>
+					&nbsp;&nbsp;
+					<a href="http://twitter.com/easyctf" target="_blank" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><span class="fa fa-twitter fa-fw"></span></a>
+					&nbsp;&nbsp;
+					<a href="http://github.com/easyctf" target="_blank" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Github"><span class="fa fa-github fa-fw"></span></a>
+				</p>
+				<p>
+					Made with <span style="color:red">♥</span> by the EasyCTF Team. © 2015.
+				</p>
+				<p>
+					EasyCTF is supported by its sponsors, including <a href="http://trailofbits.com/" target="_blank">Trail of Bits</a>, an independent information security company that leverages its world-class experience in security research, red teaming and incident response to enable enterprises to make better strategic security decisions.  
+				</p>
+			</center>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
+		</footer>
+	
+
+</body></html>

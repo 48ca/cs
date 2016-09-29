@@ -1,0 +1,5 @@
+put 100 dots at random on a canvas
+have each dot have a different initial intensity
+at each time step update every intensity according to the function f(x) = 1 -
+																				e^(tau)(x)
+fnew = fold + (1 - fold)*deltax

@@ -1,0 +1,347 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Node {
+	char symbol;
+	int frequency;
+	struct Node* left;
+	struct Node* right;
+} TreeNode;
+
+int* twoSmallest(TreeNode* forest[],int size) {
+	register int i;
+	unsigned int smallest_f = -1;
+	int smallest = -1;
+	int smaller = -1;
+	unsigned int smaller_f = -1;
+	for(i=0;i<size;i++) {
+		if(forest[i] == NULL) continue;
+		if(forest[i]->frequency < smallest_f) {
+			smaller_f = smallest_f;
+			smaller = smallest;
+			smallest = i;
+			smallest_f = forest[i]->frequency;
+		}
+		else if(forest[i]->frequency < smaller_f) {
+			smaller = i;
+			smaller_f = forest[i]->frequency;
+		}
+	}
+	static int two[2];
+	two[0] = smallest;
+	two[1] = smaller;
+	return two;
+}
+int numNodes(TreeNode** forest,int size) {
+	register int i;
+	int num = 0;
+	for(i=0;i<size;i++) {
+		if(forest[i] != NULL) num++;
+	}
+	return num;
+}
+void genTree(TreeNode* forest[], int size) {
+	while(numNodes(forest,size) > 1) {
+		int* node = twoSmallest(forest,size);
+		TreeNode* parent = (TreeNode*)malloc(sizeof(TreeNode*));
+		int freq = forest[node[0]]->frequency + forest[node[1]]->frequency;
+		parent->frequency = freq;
+		parent->symbol='\0';
+		parent->left = forest[node[0]];
+		parent->right = forest[node[1]];
+		forest[node[0]] = parent;
+		forest[node[1]] = NULL;
+		int i;
+	}
+	return;
+}
+void genCode(char** dest,TreeNode* tree,int location, int place, char path[], FILE* out) {
+	if(tree->symbol=='\0') {
+		if(tree->left != NULL)
+			path[location] = '0';
+			genCode(dest,tree->left,location+1,place*2,path,out);
+		if(tree->right != NULL)
+			path[location] = '1';
+			genCode(dest,tree->right,location+1,place*2+1,path,out);
+	} else {
+		path[location] = '\0';
+		char* save = (char*)malloc(sizeof(path));
+		strcpy(save,path);
+		fprintf(out,"%c%s.\n",tree->symbol,path);
+		dest[tree->symbol] = save;
+	}
+	return;
+}
+void genMessage(char* message, char* scheme[], char* dec) {
+	register int i, offset = 0;
+	size_t length = strlen(dec);
+	for(i=0;i<length;i++) {
+		// if(scheme[dec[i]] == NULL) continue;
+		// strcat(message,scheme[dec[i]]);
+		sprintf(message + offset,"%s",scheme[dec[i]]);
+		offset += strlen(scheme[dec[i]]);
+	}
+	return;
+}
+
+int main(int argc, char* argv[]) {
+
+	if(argc<2) { fprintf(stderr, "Usage: encode infile [-o outfile]\n"); return 1; }
+	char* infile = "/dev/null";
+	char* outfile = "/dev/null";
+
+	register int i;
+	int located = 0;
+	int compress = 1;
+	for(i=1;i<argc;i++) {
+		if(argv[i][0] == '-')
+		{
+			if((i+1 >= argc || argv[i+1][0] == '-') && (argv[i][1] == 'o')) {
+					fprintf(stderr,"Expected token after -%c\n",argv[i][1]);
+			} else {
+				switch(argv[i][1]) {
+					case 'o':
+						outfile = argv[++i];
+						break;
+					default:
+						fprintf(stderr,"Unrecognized flag -%c\n",argv[i][1]);
+						break;
+						
+				}
+			}
+		} else {
+			if(located) {
+				fprintf(stderr,"Unrecognized argument '%s'\n",argv[i]);
+			} else {
+				infile = argv[i];
+				located = 1;
+			}
+		}
+	}
+
+	FILE* fin = fopen(infile,"r");
+	FILE* out = fopen(outfile,"w");
+
+	char* message = (char*)malloc(sizeof(char) * 10000000);
+
+	int num_bytes = fread(message, sizeof(char), 10000000, fin);
+	message[num_bytes] = '\0';
+
+	int forestSize = 256;
+	TreeNode* forest[256] = { NULL };
+	
+	int length = strlen(message);
+	for(i=0;i<length;i++) {
+		char sym = message[i];
+		if(forest[sym]=='\0') {
+			TreeNode* tr = (TreeNode*)malloc(sizeof(TreeNode));
+			forest[sym] = tr;
+			tr -> frequency = 1;
+			tr -> symbol = sym;
+		}
+		else {
+			forest[sym] -> frequency++;
+		}
+	}
+	fprintf(out,"%d.\n",numNodes(forest,forestSize));
+	genTree(forest,forestSize);
+	TreeNode* root = NULL;
+	for(i=0;i<forestSize;i++) {
+		if(forest[i] != NULL) {
+			root = forest[i];
+			break;
+		}
+	}
+	if(root == NULL) return 0;
+	char* scheme[256];
+	char path[1000000] = { '\0' };
+	genCode(scheme,root,0,1,path,out);
+	char* fullMessage = (char*)malloc(100000000 * sizeof(char));
+	genMessage(fullMessage,scheme,message);
+	if(compress) {
+		register int length = strlen(fullMessage);
+		for(i=0;i<length;i+=8) {
+			char buff[9] = { '\0' };
+			memcpy(buff,fullMessage+i,8);
+			char ch = strtol(buff,(char**)NULL,2);
+			fprintf(out,"%c",ch);
+		}
+		char over = i-strlen(fullMessage); 
+		fprintf(out,"%c",over);
+	} else {
+		fprintf(out,"%s",fullMessage);
+	}
+	return 0;
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+
+int calcShan(char *message) {
+	int freq[256];
+	double prob[256];
+	register int i;
+	for(i=0;i<256;i++) { freq[i] = 0; }
+	i = 0;
+	int total = strlen(message);
+	while(i<total) {
+		freq[message[i++]] += 1;
+	}
+	for(i=0;i<256;i++) { prob[i] = freq[i] / (double)total; }
+	double sum = 0;
+	for(i=0;i<256;i++) {
+		if(freq[i] > 0) 
+			sum += freq[i] * (-1 * log2(prob[i]));
+	}
+	return (int)sum;
+}
+int main( int argc, char *argv[] ) {
+	
+	struct timeval started;
+	gettimeofday(&started,NULL);
+	
+	char *files[] = {NULL,NULL};
+	int stats = 0;
+	int located = 0;
+	register int i,j,k;
+	int compress = 1;
+	for(j=1;j<argc;j++) {
+		if(*(argv[j])=='-') {
+			if((j+1 >= argc || argv[j+1][0] == '-') && (argv[j][1] == 'o')) {
+				fprintf(stderr,"Expected token after -%c\n",argv[j][1]);
+			} else {
+				switch(argv[j][1]) {
+					case 's':
+						stats = 1;
+						break;
+					case 'o':
+						files[1] = argv[++j];
+						break;
+					default:
+						fprintf(stderr,"Unrecognized option -%c\n",argv[j][1]);
+						break;
+				}
+			}
+		} else {
+			if(located) {
+				fprintf(stderr,"Unrecognized argument '%s'\n",argv[j]);
+			} else {
+				files[0] = argv[j];
+				located = 1;
+			}
+		}
+	}
+	if(files[0] == NULL) {
+		fprintf(stderr,"Usage: decode infile [-o outfile] [-s]\n");
+		return 1;
+	}
+	char* infname = files[0];
+
+	char keyin[50000];
+	char* valin = (char*)malloc(500000000*sizeof(char));
+	FILE* fkeys;
+	FILE* fvals;
+	FILE* infile;
+
+	int key_size;
+	int val_size;
+	
+	const char delim[3] = ".\n";
+
+	char* tree = malloc(sizeof(char) * 10000000) ;
+	register int flush;
+	for(flush = 0;flush<10000000;flush++) { tree[flush] = '\0'; } // Clear array
+
+	infile = fopen(infname,"r");
+	
+	val_size = fread(valin, sizeof(char), 500000000, infile);
+	char* orig = valin;
+	valin[val_size] = '\0';
+	
+	char* keys = strstr(valin,delim);
+	*keys = '\0';
+	*(keys + 1) = '\0';
+	int number = atoi(valin);
+	valin = keys+2;
+	for(i=0;i<number;i++) {
+		char* tmp = strstr(valin,delim);
+		register int j;
+		int index = 1;
+		for(j=1;(char*)valin+j<tmp;j++) {
+			index = valin[j]=='0' ? 2*index : 2*index + 1;
+		}
+		tree[index] = valin[0];
+		valin = tmp + 2;
+	}
+	val_size -= (valin - orig);
+
+	char* message = (char*)malloc(sizeof(char) * 100000000);
+	
+	char* m = { '\0' };
+	i = 0;
+	register int cml = 0; //current message location (cml)
+	if(compress) {
+		char* ma = (char*)malloc(sizeof(char) * 100000000);
+		while(i<val_size-1) {
+			register int j;
+			unsigned short c = valin[i++];
+		    for (j = 7; j >= 0; --j) {
+				char tmp = ((c & (1 << j)) ? '1' : '0' );
+				ma[cml++] = tmp;
+			}
+		}
+		int over = valin[i];
+		ma[cml] = '\0';
+		if(over > 0) {
+			for(i=0;i<8;i++)
+				ma[cml-8+i] = ma[cml-8+over+i];
+		}
+		m = ma;
+	} else {
+		m = valin;
+	}
+	i=0;
+	cml = 0;
+	register int length = strlen(m);
+	while(i<length) {
+		register int index = 1;
+		while(tree[index]=='\0') {
+			index = m[i++]=='0' ? 2*index : 2*index+1;
+		}
+		// printf("%c",tree[index]);
+		message[cml++] = tree[index];
+	}
+	// message[cml-1] = '\0';
+	size_t enb = val_size; //encoded (after compression) bits
+	if(compress) enb *= 8;
+	size_t mb = strlen(message)*8; //message bits
+	int shan = calcShan(message); //shannon number
+
+	if(files[1] != NULL) {
+		fprintf(fopen(files[1],"w"), "%s",message);
+	}
+	//else {
+		// fprintf(stdout, "%s",message);
+	//}
+
+	// Time
+	
+	struct timeval finished;
+	gettimeofday(&finished,NULL);
+	long long elapsed = (finished.tv_sec-started.tv_sec)*1000000LL + finished.tv_usec-started.tv_usec;
+	
+	// Printing statistics
+
+	if(stats) {
+		printf("Encoded bits:        %d\n",(int)enb);
+		printf("Message bits:        %d\n",(int)mb);
+		printf("Shannon number:      %d\n",shan);
+		printf("Compression ratio:   %f%c\n",100*(mb-enb)/(float)mb,'%');
+		printf("Scheme efficiency:   %f%c\n",100*shan/(double)enb,'%');
+		printf("Performed in:        %lld μs\n",elapsed);
+	}
+	return 0;
+}

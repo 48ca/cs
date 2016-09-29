@@ -1,0 +1,7 @@
+#!/bin/bash
+
+nmap -sP 198.38.18.0/21 # | grep Nmap\ scan\ report | sed 's/^Nmap scan report for //g' | grep .csl.tjhsst.edu --color=always
+# nmap -sP 198.38.18.0/24 | grep Nmap\ scan\ report | sed 's/^Nmap scan report for //g' | grep .csl.tjhsst.edu --color=always
+# nmap -sP 198.38.16.0/21 | grep Nmap\ scan\ report | sed 's/^Nmap scan report for //g'
+# nmap -sP 192.168.0.0/16 | grep Nmap\ scan\ report | sed 's/^Nmap scan report for //g'
+# nmap -sP 198.38.16.0/20 | grep Nmap\ scan\ report | sed 's/^Nmap scan report for //g' | grep .csl.tjhsst.edu --color=always

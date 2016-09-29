@@ -1,0 +1,7 @@
+c slots=8
+fortran slots=8
+lisp slots=8
+ml slots=8
+ruby slots=8
+prolog slots=8
+basic slots=8

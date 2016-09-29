@@ -1,0 +1,17 @@
+# must start here to have OpenGL start here
+
+localhost slots=4
+java slots=8
+kirby slots=4
+# jigglypuff slots=4
+# wall slots=4
+
+# wall slots=4
+# kirby slots=4
+# c slots=8
+# fortran slots=8
+# lisp slots=8
+# ml slots=8
+# ruby slots=8
+# prolog slots=8
+# basic slots=8

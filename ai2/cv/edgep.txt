@@ -1,0 +1,3 @@
+go through all edge pixels
+for all theta
+	draw a graph like we did the lines 

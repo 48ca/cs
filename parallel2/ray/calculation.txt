@@ -1,0 +1,23 @@
+eye:
+ex
+ey
+ez
+
+we assume z is constant for stuff
+z = 0 for every pixel
+px = ? looping over all pixels, you know which pixel you're on (scale coords
+from 640 to 4 or something)
+py = ? (and 480 to 3)
+pz = 0
+rmag = sqrt(rx + ry + rz)
+where rx, ry, and rz are unit vectors for the array
+	so a = 1 in the quadratic eq
+x = ex + T*rx
+y = ey + T*ry
+z = ez + T*rz
+(x - cx)^2 + (y-cy)^2 + (y-cz)^2 = R^2
+
+substitute x y and z and solve for T w/ quadratic formula
+	b^2 - 4ac < 0, background
+	has to be done for times
+	of those, whichever has smallest T is shown

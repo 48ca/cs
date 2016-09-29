@@ -1,0 +1,59 @@
+# Tetrahedron
+1,1,1
+1,-1,1
+-1,1,-1
+-1,-1,1
+;;
+# Octahedron
+1,0,0
+-1,0,0
+0,-1,0
+0,1,0
+0,0,1
+0,0,-1
+;;
+# Cube
+-1,-1,-1
+-1,-1,1
+-1,1,1
+1,1,1
+1,-1,-1
+1,1,-1
+-1,1,-1
+1,-1,1
+;;
+# Icosahedron
+0,-1,+PHI
+0,1,+PHI
+0,-1,-PHI
+0,1,-PHI
+1,+PHI,0
+-1,+PHI,0
+1,-PHI,0
+-1,-PHI,0
++PHI,0,1
++PHI,0,-1
+-PHI,0,1
+-PHI,0,-1
+;;
+# Dodecahedron
+-1,-1,-1
+-1,-1,1
+-1,1,1
+1,1,1
+1,-1,-1
+1,1,-1
+-1,1,-1
+1,-1,1
+0,+INV_PHI,+PHI
+0,-INV_PHI,+PHI
+0,+INV_PHI,-PHI
+0,-INV_PHI,-PHI
++INV_PHI,+PHI,0
+-INV_PHI,+PHI,0
++INV_PHI,-PHI,0
+-INV_PHI,-PHI,0
++INV_PHI,0,+PHI
+-INV_PHI,0,+PHI
++INV_PHI,0,-PHI
+-INV_PHI,0,-PHI

@@ -1,0 +1,302 @@
+Time left: [38.78844380378723, 43.907278537750244]
+Game 0 score is othello_comp.py: 46 to othello_rand.py: 18
+
+Time left: [35.99224281311035, 46.78918123245239]
+Game 1 score is othello_rand.py: 24 to othello_comp.py: 40
+
+Time left: [13.188730001449585, 17.445831298828125]
+Game 2 score is othello_comp.py: 25 to othello_rand.py: 0
+
+Time left: [42.47002291679382, 38.92122936248779]
+Game 3 score is othello_rand.py: 9 to othello_comp.py: 55
+
+Time left: [39.5884051322937, 43.86385893821716]
+Game 4 score is othello_comp.py: 47 to othello_rand.py: 17
+
+Time left: [33.685768365859985, 36.90270686149597]
+Game 5 score is othello_rand.py: 0 to othello_comp.py: 55
+
+Time left: [37.71737194061279, 43.83860898017883]
+Game 6 score is othello_comp.py: 47 to othello_rand.py: 17
+
+Time left: [30.677839040756226, 30.961987495422363]
+Game 7 score is othello_rand.py: 1 to othello_comp.py: 47
+
+Time left: [45.33607196807861, 39.56780409812927]
+[31mLOSS: Game 8 score is othello_comp.py: 30 to othello_rand.py: 34
+
+[0mTime left: [37.55276942253113, 46.77386498451233]
+Game 9 score is othello_rand.py: 26 to othello_comp.py: 38
+
+Time left: [38.80519509315491, 43.82974052429199]
+Game 10 score is othello_comp.py: 49 to othello_rand.py: 15
+
+Time left: [29.205782651901245, 26.833598136901855]
+Game 11 score is othello_rand.py: 0 to othello_comp.py: 44
+
+Time left: [36.44630837440491, 43.89593291282654]
+Game 12 score is othello_comp.py: 45 to othello_rand.py: 19
+
+Time left: [43.917073011398315, 37.24321532249451]
+Game 13 score is othello_rand.py: 13 to othello_comp.py: 51
+
+Time left: [11.701140403747559, 12.356499910354614]
+Game 14 score is othello_comp.py: 21 to othello_rand.py: 0
+
+Time left: [43.84289002418518, 38.08478808403015]
+Game 15 score is othello_rand.py: 28 to othello_comp.py: 36
+
+Time left: [42.43461012840271, 40.712337255477905]
+Game 16 score is othello_comp.py: 64 to othello_rand.py: 0
+
+Time left: [43.811850786209106, 37.454005002975464]
+[31mLOSS: Game 17 score is othello_rand.py: 36 to othello_comp.py: 28
+
+[0mTime left: [43.849441051483154, 37.75732135772705]
+Game 18 score is othello_comp.py: 33 to othello_rand.py: 31
+
+Time left: [38.27507019042969, 45.296419620513916]
+Game 19 score is othello_rand.py: 16 to othello_comp.py: 48
+
+Time left: [42.454495906829834, 42.43245577812195]
+Game 20 score is othello_comp.py: 42 to othello_rand.py: 22
+
+Time left: [36.46464204788208, 46.73751211166382]
+[31mLOSS: Game 21 score is othello_rand.py: 43 to othello_comp.py: 21
+
+[0mTime left: [39.19055104255676, 43.836092472076416]
+Game 22 score is othello_comp.py: 41 to othello_rand.py: 23
+
+Time left: [27.75976037979126, 25.256835222244263]
+Game 23 score is othello_rand.py: 0 to othello_comp.py: 42
+
+Time left: [26.329164505004883, 25.120262145996094]
+Game 24 score is othello_comp.py: 41 to othello_rand.py: 0
+
+Time left: [42.44556212425232, 36.037174701690674]
+Game 25 score is othello_rand.py: 3 to othello_comp.py: 59
+
+Time left: [39.71742391586304, 45.378708600997925]
+[31mLOSS: Game 26 score is othello_comp.py: 28 to othello_rand.py: 36
+
+[0mTime left: [45.30472540855408, 37.760711908340454]
+Game 27 score is othello_rand.py: 26 to othello_comp.py: 38
+
+Time left: [42.42061996459961, 40.39994812011719]
+Game 28 score is othello_comp.py: 51 to othello_rand.py: 13
+
+Time left: [39.76277136802673, 42.440335512161255]
+Game 29 score is othello_rand.py: 15 to othello_comp.py: 48
+
+Time left: [40.166069984436035, 43.95823907852173]
+Game 30 score is othello_comp.py: 49 to othello_rand.py: 15
+
+Time left: [38.148295879364014, 45.3500862121582]
+[31mLOSS: Game 31 score is othello_rand.py: 35 to othello_comp.py: 29
+
+[0mTime left: [37.86886382102966, 43.888614654541016]
+Game 32 score is othello_comp.py: 45 to othello_rand.py: 19
+
+Time left: [45.4033625125885, 38.72921109199524]
+Game 33 score is othello_rand.py: 25 to othello_comp.py: 39
+
+Time left: [37.39360785484314, 43.84884715080261]
+Game 34 score is othello_comp.py: 41 to othello_rand.py: 23
+
+Time left: [39.042081356048584, 45.24751162528992]
+Game 35 score is othello_rand.py: 27 to othello_comp.py: 37
+
+Time left: [42.43073534965515, 39.24626278877258]
+Game 36 score is othello_comp.py: 54 to othello_rand.py: 10
+
+Time left: [43.90049433708191, 39.51971387863159]
+Game 37 score is othello_rand.py: 8 to othello_comp.py: 56
+
+Time left: [40.58475708961487, 43.909416913986206]
+Game 38 score is othello_comp.py: 49 to othello_rand.py: 15
+
+Time left: [43.95415139198303, 39.39821243286133]
+Game 39 score is othello_rand.py: 19 to othello_comp.py: 45
+
+Time left: [40.411126136779785, 45.344388008117676]
+Game 40 score is othello_comp.py: 41 to othello_rand.py: 23
+
+Time left: [38.530089139938354, 45.261818408966064]
+Game 41 score is othello_rand.py: 24 to othello_comp.py: 40
+
+Time left: [42.381672620773315, 41.64655065536499]
+Game 42 score is othello_comp.py: 58 to othello_rand.py: 6
+
+Time left: [43.85242199897766, 39.024563789367676]
+Game 43 score is othello_rand.py: 25 to othello_comp.py: 39
+
+Time left: [43.91228532791138, 38.11821126937866]
+Game 44 score is othello_comp.py: 33 to othello_rand.py: 31
+
+Time left: [36.683878660202026, 45.44984436035156]
+Game 45 score is othello_rand.py: 28 to othello_comp.py: 36
+
+Time left: [39.72647428512573, 40.998056173324585]
+Game 46 score is othello_comp.py: 52 to othello_rand.py: 12
+
+Time left: [36.33302903175354, 45.292412996292114]
+Game 47 score is othello_rand.py: 17 to othello_comp.py: 47
+
+Time left: [42.35995101928711, 38.30299139022827]
+Game 48 score is othello_comp.py: 45 to othello_rand.py: 19
+
+Time left: [43.933178424835205, 39.554364919662476]
+[31mLOSS: Game 49 score is othello_rand.py: 32 to othello_comp.py: 32
+
+[0mTime left: [38.29159879684448, 43.837616205215454]
+Game 50 score is othello_comp.py: 35 to othello_rand.py: 29
+
+Time left: [43.922258377075195, 41.37327766418457]
+Game 51 score is othello_rand.py: 7 to othello_comp.py: 57
+
+Time left: [39.18317651748657, 43.85471439361572]
+Game 52 score is othello_comp.py: 52 to othello_rand.py: 12
+
+Time left: [37.03801512718201, 45.37104845046997]
+Game 53 score is othello_rand.py: 11 to othello_comp.py: 53
+
+Time left: [23.39113211631775, 21.79719066619873]
+Game 54 score is othello_comp.py: 37 to othello_rand.py: 0
+
+Time left: [43.8629264831543, 38.72342371940613]
+Game 55 score is othello_rand.py: 26 to othello_comp.py: 38
+
+Time left: [36.28874397277832, 45.337706089019775]
+[31mLOSS: Game 56 score is othello_comp.py: 22 to othello_rand.py: 42
+
+[0mTime left: [36.818591833114624, 45.340800285339355]
+Game 57 score is othello_rand.py: 23 to othello_comp.py: 41
+
+Time left: [37.12702393531799, 43.89010214805603]
+Game 58 score is othello_comp.py: 41 to othello_rand.py: 23
+
+Time left: [38.10520792007446, 45.36806845664978]
+Game 59 score is othello_rand.py: 19 to othello_comp.py: 45
+
+Time left: [40.93578815460205, 42.07308745384216]
+Game 60 score is othello_comp.py: 57 to othello_rand.py: 7
+
+Time left: [38.32299995422363, 43.843116760253906]
+Game 61 score is othello_rand.py: 16 to othello_comp.py: 48
+
+Time left: [43.82036280632019, 39.05840182304382]
+[31mLOSS: Game 62 score is othello_comp.py: 32 to othello_rand.py: 32
+
+[0mTime left: [43.85267114639282, 39.59875154495239]
+Game 63 score is othello_rand.py: 26 to othello_comp.py: 38
+
+Time left: [40.93366575241089, 38.51263356208801]
+Game 64 score is othello_comp.py: 48 to othello_rand.py: 14
+
+Time left: [39.11991477012634, 45.388508796691895]
+[31mLOSS: Game 65 score is othello_rand.py: 32 to othello_comp.py: 32
+
+[0mTime left: [38.33074736595154, 43.828367948532104]
+Game 66 score is othello_comp.py: 46 to othello_rand.py: 18
+
+Time left: [20.512383937835693, 19.132851600646973]
+Game 67 score is othello_rand.py: 0 to othello_comp.py: 32
+
+Time left: [37.99740028381348, 43.8380069732666]
+Game 68 score is othello_comp.py: 49 to othello_rand.py: 15
+
+Time left: [36.25228524208069, 45.40612864494324]
+Game 69 score is othello_rand.py: 25 to othello_comp.py: 39
+
+Time left: [39.78110861778259, 45.29404544830322]
+Game 70 score is othello_comp.py: 42 to othello_rand.py: 22
+
+Time left: [43.84948420524597, 39.566301107406616]
+Game 71 score is othello_rand.py: 13 to othello_comp.py: 51
+
+Time left: [38.57933521270752, 43.905213594436646]
+Game 72 score is othello_comp.py: 50 to othello_rand.py: 14
+
+Time left: [43.87859511375427, 41.22229552268982]
+[31mLOSS: Game 73 score is othello_rand.py: 38 to othello_comp.py: 26
+
+[0mTime left: [43.99780869483948, 41.6020188331604]
+Game 74 score is othello_comp.py: 49 to othello_rand.py: 15
+
+Time left: [38.833101987838745, 45.349090576171875]
+Game 75 score is othello_rand.py: 16 to othello_comp.py: 48
+
+Time left: [39.975974798202515, 45.287153005599976]
+Game 76 score is othello_comp.py: 46 to othello_rand.py: 18
+
+Time left: [33.578657150268555, 31.46025252342224]
+Game 77 score is othello_rand.py: 0 to othello_comp.py: 51
+
+Time left: [40.936012983322144, 41.72030568122864]
+Game 78 score is othello_comp.py: 59 to othello_rand.py: 5
+
+Time left: [43.82528376579285, 38.979665756225586]
+Game 79 score is othello_rand.py: 29 to othello_comp.py: 35
+
+Time left: [37.919132232666016, 45.29194712638855]
+Game 80 score is othello_comp.py: 33 to othello_rand.py: 31
+
+Time left: [43.818603515625, 39.80060958862305]
+Game 81 score is othello_rand.py: 11 to othello_comp.py: 53
+
+Time left: [42.44406986236572, 38.49483561515808]
+Game 82 score is othello_comp.py: 43 to othello_rand.py: 21
+
+Time left: [32.12293314933777, 29.3020977973938]
+Game 83 score is othello_rand.py: 0 to othello_comp.py: 48
+
+Time left: [40.367260217666626, 43.92039942741394]
+Game 84 score is othello_comp.py: 43 to othello_rand.py: 21
+
+Time left: [26.321533679962158, 26.88328242301941]
+Game 85 score is othello_rand.py: 2 to othello_comp.py: 40
+
+Time left: [10.299931049346924, 11.445580959320068]
+Game 86 score is othello_comp.py: 19 to othello_rand.py: 0
+
+Time left: [40.7661247253418, 43.85655999183655]
+Game 87 score is othello_rand.py: 14 to othello_comp.py: 50
+
+Time left: [38.824578046798706, 43.8614137172699]
+Game 88 score is othello_comp.py: 33 to othello_rand.py: 31
+
+Time left: [36.28018856048584, 45.2763512134552]
+Game 89 score is othello_rand.py: 15 to othello_comp.py: 49
+
+Time left: [38.697402238845825, 45.25608992576599]
+[31mLOSS: Game 90 score is othello_comp.py: 28 to othello_rand.py: 36
+
+[0mTime left: [38.89044427871704, 45.32250714302063]
+[31mLOSS: Game 91 score is othello_rand.py: 43 to othello_comp.py: 21
+
+[0mTime left: [36.01463723182678, 43.82727408409119]
+Game 92 score is othello_comp.py: 37 to othello_rand.py: 27
+
+Time left: [48.19709253311157, 36.20684003829956]
+[31mLOSS: Game 93 score is othello_rand.py: 42 to othello_comp.py: 22
+
+[0mTime left: [39.8194363117218, 43.92030906677246]
+[31mLOSS: Game 94 score is othello_comp.py: 32 to othello_rand.py: 32
+
+[0mTime left: [36.08796048164368, 45.30042624473572]
+Game 95 score is othello_rand.py: 17 to othello_comp.py: 47
+
+Time left: [36.7860004901886, 45.30434012413025]
+Game 96 score is othello_comp.py: 43 to othello_rand.py: 21
+
+Time left: [43.86926555633545, 38.79536700248718]
+Game 97 score is othello_rand.py: 30 to othello_comp.py: 34
+
+Time left: [39.19814467430115, 43.8674578666687]
+Game 98 score is othello_comp.py: 42 to othello_rand.py: 22
+
+Time left: [43.90145421028137, 37.91631531715393]
+Game 99 score is othello_rand.py: 28 to othello_comp.py: 36
+
+After playing 100 games, the score is
+othello_comp.py: 86 and othello_rand.py: 10

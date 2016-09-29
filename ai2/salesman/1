@@ -1,0 +1,216 @@
+#!/usr/bin/env python3
+
+from multiprocessing import Pool
+import sys
+import time
+from random import shuffle
+
+CV2 = False
+THREADING = True
+STOP_ON_SOLVE = True
+PRINT_ALL_TESTS = False
+
+if CV2:
+    import cv2
+    import numpy as np
+
+n = 0
+
+width = 200
+height = 200
+maxlat = 0
+minlat = float('inf')
+maxlon = 0
+minlon = float('inf')
+latw = 0
+lonw = 0
+
+def readdata():
+    # raw = open("tsp0734.txt","r").read().split("\n")
+    raw = open("data.txt","r").read().split("\n")
+    global n
+    global maxlat,minlat,maxlon,minlon,latw,lonw
+    n = int(raw[0])
+    ret = {}
+    for l1,d1 in enumerate(raw[1:]):
+        if(d1 == ""): continue
+        ret[l1] = {}
+        d1 = d1.split(" ")
+        ret[l1]['data'] = [float(d) for d in d1]
+        maxlat = max(float(d1[0]),maxlat)
+        minlat = min(float(d1[0]),minlat)
+        maxlon = max(float(d1[1]),maxlon)
+        minlon = min(float(d1[1]),minlon)
+        for l2,d2 in enumerate(raw[1:]):
+            if(d2 == ""): continue
+            if l1 == l2: continue
+            d2 = d2.split(" ")
+            ret[l1][l2] = ((float(d1[0])-float(d2[0]))**2 + (float(d1[1])-float(d2[1]))**2)**.5
+    maxlat += 100
+    minlat -= 100
+    maxlon += 100
+    minlon -= 100
+    latw = maxlat - minlat
+    lonw = maxlon - minlon
+    return ret
+
+atc = 0
+# MAX = 10000000/8 # < 2.5 GB
+MAX = 0
+dcache = {}
+def dist(l,d):
+    td = 0
+    for i in range(n-1):
+        td += d[int(l[i])][int(l[i+1])]
+    td += d[l[n-1]][l[0]]
+    return td
+
+    sl = str(l)
+    global atc
+    if sl not in dcache:
+        atc += 1
+        td = 0
+        for i in range(n-1):
+            td += d[int(l[i])][int(l[i+1])]
+        td += d[l[n-1]][l[0]]
+        if atc > MAX: return td
+        dcache[sl] = td
+    return dcache[sl]
+
+global mind, minr
+mind = float('inf')
+minr = []
+
+def swap(g,i,j):
+    g[i],g[j] = g[j],g[i]
+    return g
+
+def all_swaps(g):
+    """
+px py
+rx ry
+qx qy
+
+A = 1/2 * (px*ry + ... - ...)
+A(a,b,c)
+A(a,b,d) must == signs
+A(c,d,a)
+A(c,d,b)
+
+ugh
+
+just swap them
+
+    """
+    all = []
+    for i in range(n-1):
+        for j in range(i+1,n):
+            all.append(swap(g.copy(),i,j))
+    return all
+
+def untangle(g,i,j,d):
+    ng = g[0:i] + g[i:j][::-1] + g[j:]
+    ddist = d[ng[i-1]][ng[i]] + d[ng[j-1]][ng[j]] - d[g[i-1]][g[i]] - d[g[j-1]][g[j]]
+    return ng, ddist
+
+def only_one_untangle(g,dist,d):
+    md = dist
+    mg = g
+    for i in range(1,n-2):
+        for j in range(i+1,n-1):
+            ng,nd = untangle(g,i,j,d)
+            # print(g)
+            # print(ng)
+            # print()
+            if nd+dist < md: # Change for max
+                md = nd+dist
+                mg = ng
+    # print("Finished")
+    return mg
+                
+
+def findmin(graph,data):
+    mg = graph
+    mdis = dist(graph,data)
+    # loop = all_swaps(graph)
+    loop = [only_one_untangle(mg,mdis,data)] + all_swaps(graph)
+    for s in loop:
+        dis = dist(s,data)
+        if dis < mdis: # Change for max
+            mdis = dis
+            mg = s
+            if PRINT_ALL_TESTS: print(mg)
+    if mg == graph:
+        return graph,mdis
+    else:
+        return findmin(mg,data)
+            
+        
+def display(mg,d,i,num,mind):
+    onedex = mg.index(0)
+    tmg = [mg[onedex-i]+1 for i in range(len(mg))]
+    if tmg[-1] < tmg[1]:
+        rmg = mg[::-1]
+        onedex = rmg.index(0)
+        tmg = [rmg[onedex-i]+1 for i in range(len(mg))]
+    print("{} {} {} {}".format(mind,i,num,tmg))
+    if CV2:
+        img = np.zeros((height,width,3), np.uint8)
+        img[:,:] = (255,255,255)
+        for i in range(-1,n-1):
+            w1 = int(width * (d[mg[i]]['data'][0] - minlat) / latw)
+            h1 = int(height * (d[mg[i]]['data'][1] - minlon) / lonw)
+            w2 = int(width * (d[mg[i+1]]['data'][0] - minlat) / latw)
+            h2 = int(height * (d[mg[i+1]]['data'][1] - minlon) / lonw)
+            cv2.line(img,(h1,w1),(h2,w2),(255,0,0),2)
+        for i in range(-1,n-1): # Prevent line over circle
+            w1 = int(width * (d[mg[i]]['data'][0] - minlat) / latw)
+            h1 = int(height * (d[mg[i]]['data'][1] - minlon) / lonw)
+            cv2.circle(img,(h1,w1),4,(0,0,255), -1)
+        cv2.imshow('best',img)
+        cv2.waitKey(500)
+        cv2.imwrite('best.png',img)
+
+# best = [23, 27, 26, 30, 35, 33, 32, 37, 36, 34, 31, 29, 28, 20, 13, 9, 0, 1, 3, 2, 4, 5, 6, 7, 8, 11, 10, 18, 17, 16, 15, 12, 14, 19, 22, 25, 24, 21]
+best = None
+
+def main(i,defg=None):
+    d = readdata()
+    # print(d[0][1])
+    graph = list(range(n))
+    mg = graph
+    if defg: mg = defg
+    else:
+        if best: mg = best
+    mind = dist(mg,d)
+    display(mg,d,i,0,mind)
+    num = 0
+    try:
+        while True:
+            shuffle(graph)
+            g,tmd = findmin(graph,d)
+            if tmd < mind: # Change for max
+                mg = g
+                mind = tmd
+                # print("New local min at {} with dist {}".format(mg,mind))
+                num += 1
+                display(mg,d,i,num,mind)
+                if STOP_ON_SOLVE:
+                    if mind < 6659.5:
+                        print("Thread {} done".format(i))
+                        if CV2:
+                            print("Closing in 10 seconds...")
+                            cv2.waitKey(10000)
+                        return
+    except KeyboardInterrupt:
+        print("EXITING: {} {} {} {}".format(mind,i,num,mg))
+    return
+
+if CV2 or not THREADING: main(0,best)
+else:
+    pool = Pool(3)
+    try:
+        pool.map(main,range(3))
+    except:
+        pool.terminate()
+        pool.join()

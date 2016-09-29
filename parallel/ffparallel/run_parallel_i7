@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# width iterations resolution
+
+# mpirun -np 48 -hostfile hosts.txt ./a.out 1000 1000 1000000
+# mpirun -np 48 -hostfile hosts.txt ./a.out 100 100 100000
+# mpirun --host localhost -np 4 ./a.out 1000 10 1000000 2> /dev/null & # Maximum double precision
+# mpirun --host localhost -np 4 ./a.out 1000 10 100000
+
+# Serial - 2
+echo ------ SERIAL ------
+mpirun -np 2 --host localhost ./a.out 100 150 100000
+
+# One node - 3
+echo ------ THREE CORES ------
+mpirun -np 3 --host localhost ./a.out 100 150 100000
+
+# One node - 4
+echo ------ FOUR CORES ------
+mpirun -np 4 --host localhost ./a.out 100 150 100000
+
+# One node - 5
+echo ------ FIVE CORES ------
+mpirun -np 5 --host localhost ./a.out 100 150 100000
+
+# One node - 6
+echo ------ SIX CORES ------
+mpirun -np 6 --host localhost ./a.out 100 150 100000
+
+# One node - 7
+echo ------ SEVEN CORES ------
+mpirun -np 7 --host localhost ./a.out 100 150 100000
+
+# One node - 8
+echo ------ EIGHT CORES ------
+mpirun -np 8 --host localhost ./a.out 100 150 100000
+
+# Two nodes - 9
+echo ------ NINE CORES ------
+mpirun -np 9 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 10
+echo ------ TEN CORES ------
+mpirun -np 10 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 11
+echo ------ ELEVEN CORES ------
+mpirun -np 11 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 12
+echo ------ TWELVE CORES ------
+mpirun -np 12 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 13
+echo ------ THIRTEEN CORES ------
+mpirun -np 13 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 14
+echo ------ FOURTEEN CORES ------
+mpirun -np 14 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 15
+echo ------ FIFTEEN CORES ------
+mpirun -np 15 --host c,fortran ./a.out 100 150 100000
+
+# Two nodes - 16
+echo ------ SIXTEEN CORES ------
+mpirun -np 16 --host c,fortran ./a.out 100 150 100000

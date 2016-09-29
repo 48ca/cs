@@ -1,0 +1,1 @@
+mpicc -lGL -lGLU -lglut -lpng -lgmp -lm -O2 mandelbrot.c -o mandelexec

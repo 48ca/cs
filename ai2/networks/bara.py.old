@@ -1,0 +1,71 @@
+#!/usr/bin/env python2
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+import operator
+import sys
+from random import random
+
+NODE_COUNT = 5000
+Z = 20
+
+class Node:
+    def __init__(self,i):
+        self.nodes = set()
+        self.id = i
+    def __str__(self):
+        return "<Node: {}>".format(self.id)
+    def __repr__(self):
+        return str(self)
+
+nodes = [Node(i) for i in range(NODE_COUNT)]
+nodes[0].nodes.add(nodes[1])
+nodes[1].nodes.add(nodes[0])
+
+tot = 2
+for n in nodes:
+    # ra = [nodes[int(random()*NODE_COUNT)] for i in range(Z)]
+    ra = []
+    prop = {}
+    tot2 = 0
+    for newn in nodes:
+        tmp = float(len(newn.nodes))/(tot+NODE_COUNT)
+        prop[newn] = tmp + 1
+        tot2 += tmp
+    di = sorted(prop.items(),key=operator.itemgetter(1))
+    ra = [di[i][0] for i in range(Z)]
+    # print(ra)
+    st = len(n.nodes)
+    n.nodes |= set(ra)
+    for nta in ra:
+        if nta != n and n not in nta.nodes:
+            nta.nodes.add(n)
+            tot += 1
+    tot += len(n.nodes)-st
+    sys.stdout.write("{:.2f}%\r".format(100.0*n.id/NODE_COUNT))
+    sys.stdout.flush()
+print()
+
+mdeg = 0
+d = {i:0 for i in range(NODE_COUNT)}
+for n in nodes:
+    deg = len(n.nodes)
+    d[deg]+=1
+    if deg > mdeg: mdeg = deg
+ZM = mdeg+1
+
+ys = []
+for i in range(ZM):
+    ys.append(float(d[i])/tot)
+
+ind = np.arange(ZM)
+width = .35
+
+fig, ax = plt.subplots()
+rects = ax.bar(ind, ys, width=width, color='r')
+
+ax.set_ylabel('Nodes (% of total)')
+ax.set_xlabel('Degree')
+
+plt.show()

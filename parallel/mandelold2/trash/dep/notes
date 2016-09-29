@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[]) {
+
+	
+	Zo = a + bi = 0 + 0i
+	steps = 0
+	loop 100-ish times on lowest zoom:
+		Zi+1 = Zi^2 + C
+		if sqrt(a^2 + b^2) >= 2: break
+	steps++
+
+	shaded w/ how many loops it makes it through:
+		if it makes it though all of them,
+			its black
+		otherwise, the closer it gets to the end, the whiter/brighter it is
+
+	return 0;
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# mpirun --host c,lisp,fortran,ml,prolog,python -np 48 ff_mpi 1000 1000 10000
+mpirun --host localhost -np 4 ff_mpi 100 100 1000

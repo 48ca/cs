@@ -1,0 +1,20 @@
+A Arad
+B Bucharest
+C Craiova
+D Drobeta
+E Eforie
+F Fagaras
+G Giurgiu
+H Harsova
+I Iasi
+L Lugoj
+M Mehadia
+N Neamt
+O Oradea
+P Pitesti
+R Ramnicu Valcea
+S Sibiu
+T Timisoara
+U Urziceni
+V Vaslui
+Z Zerind
