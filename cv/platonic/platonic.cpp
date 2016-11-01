@@ -26,6 +26,8 @@
 
 #define DO_LINES 1
 
+#define FRAMES 10
+
 using std::vector;
 using std::string;
 using std::stod;
@@ -43,21 +45,9 @@ vector<vecf> lines;
 #define THETA_Y 2 * M_PI/3
 #define THETA_Z 1 * M_PI/5
 
-const matrix_double Rx = {
-	{1, 0, 0},
-	{0, cos(THETA_X), -sin(THETA_X)},
-	{0, sin(THETA_X), cos(THETA_X)}
-};
-const matrix_double Ry = {
-	{cos(THETA_Y), 0, sin(THETA_Y)},
-	{0, 1, 0},
-	{-sin(THETA_Y), 0, cos(THETA_Y)}
-};
-const matrix_double Rz = {
-	{cos(THETA_Z), -sin(THETA_Z), 0},
-	{sin(THETA_Z), cos(THETA_Z), 0},
-	{0, 0, 1}
-};
+matrix_double Rx;
+matrix_double Ry;
+matrix_double Rz;
 
 vecf apply(matrix_double a , vecf b) {
 	// method is broken
@@ -261,63 +251,90 @@ int main(int argc, char** argv) {
 		m_proj[i] = *(new vecf(4));
 		worldToCamera[i] = *(new vecf(4));
 	}
-	int numVertices;
-	if(argc != 2) {
-		numVertices = readFile((char*)"cube.txt");
-		// cerr << "invalid number of arguments" << endl;
-		// return 1;
-	} else {
-		numVertices = readFile(argv[1]);
-	}
-	/*
-	for(vector<double> const& v1: points) {
-		cout << "P:";
-		for(double const& v2: v1) {
-			cout << " " << v2;
+
+	register int frame;
+
+	for(frame = 0;frame<FRAMES;++frame) {
+
+		double tx = THETA_X * frame/FRAMES;
+		double ty = THETA_Y * frame/FRAMES;
+		double tz = THETA_Z * frame/FRAMES;
+
+		Rx = {
+			{1, 0, 0},
+			{0, cos(tx), -sin(tx)},
+			{0, sin(tx), cos(tx)}
+		};
+		Ry = {
+			{cos(ty), 0, sin(ty)},
+			{0, 1, 0},
+			{-sin(ty), 0, cos(ty)}
+		};
+		Rz = {
+			{cos(tz), -sin(tz), 0},
+			{sin(tz), cos(tz), 0},
+			{0, 0, 1}
+		};
+
+		int numVertices;
+		if(argc != 2) {
+			numVertices = readFile((char*)"cube.txt");
+			// cerr << "invalid number of arguments" << endl;
+			// return 1;
+		} else {
+			numVertices = readFile(argv[1]);
 		}
-		cout << endl << endl;
-	}
-	*/
-
-	cout << "num: " << numVertices << endl;
-	int d = DO_LINES ? setLines(numVertices, LINE_LIMIT) : 0;
-	cout << "added " << d << " vertices" << endl;
-
-	setProjectionMatrix(FOV, NEAR, FAR, m_proj);
-	setWorldToCameraMatrix(worldToCamera);
-
-	memset(buffer, 0x0, width * height);
-	int tot = numVertices + d;
-	for(i=tot-1;i>=0;--i)
-	{
-		vecf cam(3), projectedvert(3);
-		multiPointMatrix(points[i], cam, worldToCamera);
-		multiPointMatrix(cam, projectedvert, m_proj);
 		/*
-		cout << "start" << endl;
-		printvec(points[i]);
-		printvec(cam);
-		printvec(projectedvert);
-		cout << "end" << endl;
+		for(vector<double> const& v1: points) {
+			cout << "P:";
+			for(double const& v2: v1) {
+				cout << " " << v2;
+			}
+			cout << endl << endl;
+		}
 		*/
 
-		if (projectedvert[0] < -1 ||
-			projectedvert[0] > 1 ||
-			projectedvert[1] < -1 ||
-			projectedvert[1] > 1)
-			continue;
-		uint32_t x = (projectedvert[0] + 1) * 0.5 * width; 
-		uint32_t y = (1 - (projectedvert[1] + 1) * 0.5) * height;
-		// int x = width * abs(projectedvert[0]);
-		// int y = height * abs(projectedvert[1]);
-		// cout << "X: " << x << " Y: " << y << endl;
-		buffer[y * width + x] = i < numVertices ? 255 : 125;
+		cout << "num: " << numVertices << endl;
+		int d = DO_LINES ? setLines(numVertices, LINE_LIMIT) : 0;
+		cout << "added " << d << " vertices" << endl;
+
+		setProjectionMatrix(FOV, NEAR, FAR, m_proj);
+		setWorldToCameraMatrix(worldToCamera);
+
+		memset(buffer, 0x0, width * height);
+		int tot = numVertices + d;
+		for(i=tot-1;i>=0;--i)
+		{
+			vecf cam(3), projectedvert(3);
+			multiPointMatrix(points[i], cam, worldToCamera);
+			multiPointMatrix(cam, projectedvert, m_proj);
+			/*
+			cout << "start" << endl;
+			printvec(points[i]);
+			printvec(cam);
+			printvec(projectedvert);
+			cout << "end" << endl;
+			*/
+
+			if (projectedvert[0] < -1 ||
+				projectedvert[0] > 1 ||
+				projectedvert[1] < -1 ||
+				projectedvert[1] > 1)
+				continue;
+			uint32_t x = (projectedvert[0] + 1) * 0.5 * width; 
+			uint32_t y = (1 - (projectedvert[1] + 1) * 0.5) * height;
+			// int x = width * abs(projectedvert[0]);
+			// int y = height * abs(projectedvert[1]);
+			// cout << "X: " << x << " Y: " << y << endl;
+			buffer[y * width + x] = i < numVertices ? 255 : 125;
+		}
+		std::ofstream ofs;
+		ofs.open("out" + std::to_string(frame) + ".ppm");
+		ofs << "P5\n" << width << " " << height << "\n255\n";
+		ofs.write((char*)buffer, width * height);
+		ofs.close();
+
 	}
-	std::ofstream ofs;
-	ofs.open("out.ppm");
-	ofs << "P5\n" << width << " " << height << "\n255\n";
-	ofs.write((char*)buffer, width * height);
-	ofs.close();
 	delete [] buffer;
 
 	return 0;

@@ -3,4 +3,4 @@ CCFLAGS=-O3 -Wall -Wextra
 CXX=g++
 
 (all):
-	$(CXX) $(CCFLAGS) canny.cpp $(LDLIBS)
+	$(CXX) $(CCFLAGS) dilation.cpp $(LDLIBS)
