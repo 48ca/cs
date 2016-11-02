@@ -4,7 +4,6 @@
 #include <vector>
 #include <cmath>
 #include <cstdlib>
-#include "split/string_split.h"
 #include <string.h>
 
 #define SCALAR 1
@@ -19,20 +18,39 @@
 
 #define NEAR .1
 #define FAR 100
-#define FOV 90
+#define FOV 80
 
 #define WIDTH 800
 #define HEIGHT 800
 
 #define DO_LINES 1
 
-#define FRAMES 10
+#define FRAMES 300
+
+#define OUTFILE "OUT"
 
 using std::vector;
 using std::string;
 using std::stod;
 using std::cout;
 using std::endl;
+
+#include <sstream>
+using std::stringstream;
+void split(const string &s, char delim, vector<string> &elems) {
+    stringstream ss;
+    ss.str(s);
+    string item;
+    while (getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+}
+
+vector<string> split(const string &s, char delim) {
+    vector<string> elems;
+    split(s, delim, elems);
+    return elems;
+}
 
 typedef vector<double> vecf;
 typedef vector<vector<vecf>> matrix_vecf;
@@ -41,16 +59,15 @@ vector<vecf> points;
 vector<vecf> lines;
 
 #define DO_ROTATE 1
-#define THETA_X M_PI/4
-#define THETA_Y 2 * M_PI/3
-#define THETA_Z 1 * M_PI/5
+#define THETA_X 2* M_PI
+#define THETA_Y 2* M_PI
+#define THETA_Z 2* M_PI
 
 matrix_double Rx;
 matrix_double Ry;
 matrix_double Rz;
 
 vecf apply(matrix_double a , vecf b) {
-	// method is broken
 	register int r;
 	register int rp, cp;
 	vecf tmp = {0, 0, 0};
@@ -143,7 +160,6 @@ int addPoint(string const& point) {
 		p = apply(Ry, p);
 		p = apply(Rz, p);
 	}
-	cout << "D" << endl;
 	points.push_back(p);
 	return 0;
 }
@@ -167,7 +183,6 @@ int readFile(char* filename) {
 
 void setProjectionMatrix(const float &angleOfView, const float &near, const float &far, matrix_double &M) {
 	float scale = 1.0 / tan(angleOfView * .5 * M_PI / 180.0);
-	cout << scale << endl;
 	M[0][0] = scale;
 	M[1][1] = scale;
 	M[2][2] = -far / (far - near);
@@ -230,9 +245,6 @@ int setLines(int numV, int limit) {
 			if(limit >= 0 && ++lines >= limit) return num;
 		}
 	}
-	for(const vector<int>& v : drawnLines) {
-		printvec(v);
-	}
 	return num;
 }
 
@@ -252,13 +264,18 @@ int main(int argc, char** argv) {
 		worldToCamera[i] = *(new vecf(4));
 	}
 
+	setProjectionMatrix(FOV, NEAR, FAR, m_proj);
+	setWorldToCameraMatrix(worldToCamera);
+
 	register int frame;
 
 	for(frame = 0;frame<FRAMES;++frame) {
 
-		double tx = THETA_X * frame/FRAMES;
-		double ty = THETA_Y * frame/FRAMES;
-		double tz = THETA_Z * frame/FRAMES;
+		double tx = THETA_X * (double)frame/FRAMES;
+		double ty = THETA_Y * (double)frame/FRAMES;
+		double tz = THETA_Z * (double)frame/FRAMES;
+
+		points = {};
 
 		Rx = {
 			{1, 0, 0},
@@ -275,6 +292,20 @@ int main(int argc, char** argv) {
 			{sin(tz), cos(tz), 0},
 			{0, 0, 1}
 		};
+
+		if(DEBUG) {
+			cout << " -------------- " << endl;
+			printvec(Rx[0]);
+			printvec(Rx[1]);
+			printvec(Rx[2]);
+			printvec(Ry[0]);
+			printvec(Ry[1]);
+			printvec(Ry[2]);
+			printvec(Rz[0]);
+			printvec(Rz[1]);
+			printvec(Rz[2]);
+			cout << " -------------- " << endl;
+		}
 
 		int numVertices;
 		if(argc != 2) {
@@ -294,12 +325,9 @@ int main(int argc, char** argv) {
 		}
 		*/
 
-		cout << "num: " << numVertices << endl;
+		// cout << "num: " << numVertices << endl;
 		int d = DO_LINES ? setLines(numVertices, LINE_LIMIT) : 0;
-		cout << "added " << d << " vertices" << endl;
-
-		setProjectionMatrix(FOV, NEAR, FAR, m_proj);
-		setWorldToCameraMatrix(worldToCamera);
+		// cout << "added " << d << " vertices" << endl;
 
 		memset(buffer, 0x0, width * height);
 		int tot = numVertices + d;
@@ -329,13 +357,22 @@ int main(int argc, char** argv) {
 			buffer[y * width + x] = i < numVertices ? 255 : 125;
 		}
 		std::ofstream ofs;
-		ofs.open("out" + std::to_string(frame) + ".ppm");
+		char of[1000];
+		sprintf(of, "%s%06d.ppm", OUTFILE, frame);
+		ofs.open(of);
 		ofs << "P5\n" << width << " " << height << "\n255\n";
 		ofs.write((char*)buffer, width * height);
 		ofs.close();
-
+		cout << "Frame " << frame << " rendered (" << of << ")" << endl;
 	}
 	delete [] buffer;
+
+	if(FRAMES > 1) {
+		cout << endl;
+		cout << "To convert the output images to a gif, run:" << endl;
+		cout << "convert " << OUTFILE << "*.ppm -loop 0 -delay 5 out.gif" << endl;
+		cout << "This will create a file called 'out.gif'." << endl;
+	}
 
 	return 0;
 }
