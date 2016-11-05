@@ -25,7 +25,7 @@
 
 #define DO_LINES 1
 
-#define FRAMES 300
+#define FRAMES 1
 
 #define OUTFILE "OUT"
 
@@ -367,11 +367,15 @@ int main(int argc, char** argv) {
 	}
 	delete [] buffer;
 
+	cout << endl << "Note:" << endl;
 	if(FRAMES > 1) {
-		cout << endl;
 		cout << "To convert the output images to a gif, run:" << endl;
 		cout << "convert " << OUTFILE << "*.ppm -loop 0 -delay 5 out.gif" << endl;
 		cout << "This will create a file called 'out.gif'." << endl;
+	} else {
+		cout << "This program can render multiple frames." << endl;
+		cout << "To do so, set the FRAMES variable at the top of this file" << endl;
+		cout << "to a number greater than one." << endl;
 	}
 
 	return 0;
