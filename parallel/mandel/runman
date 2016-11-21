@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-mpicc -lGL -lGLU -lglut -lpng -lgmp -lm mandelbrot.c -o mandelexec -Ofast
+make
 compiled=$?
 if [[ $compiled == 0 ]]
-	then mpirun -np 4 -hostfile hosts.txt ~/cs/parallel/mandel/mandelexec $@
+	then mpirun -np 4 -hostfile hosts.txt mandelexec $@
 fi
 # mpirun -np 16 -hostfile hosts.txt mandelexec $@

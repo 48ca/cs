@@ -1,5 +1,5 @@
 (all):
-	mpicc -Ofast mandelbrot.c -o mandelexec `pkg-config --cflags --libs gl glu ompi libpng` -lglut -lgmp -lm
+	mpicc `pkg-config --cflags --libs glu gl libpng ompi` -lglut -lm -Ofast mandelbrot.c -o mandelexec
 run:
 	make
 	mpirun -np 3 -hostfile hosts.txt mandelexec --load
