@@ -53,8 +53,12 @@ int main(int argc, char** argv) {
 
 	if(argc < 2) {
 		cerr << "No filename given" << endl;
+		cout << "Usage: dilation <filename> [lower threshold] [upper threshold]";
 		return 1;
 	}
+
+	char out[1000];
+	sprintf(out, "%s-out.png", argv[1]);
 
 	double lower_thres = DEFAULT_LOWER_THRES;
 	double upper_thres;
@@ -80,14 +84,14 @@ int main(int argc, char** argv) {
 	cv::Mat uim = binarize(img, upper_thres);
 	cv::Mat sub = subtract(lim, uim);
 
-	imwrite("out.png", sub);
+	imwrite(out, sub);
 
 	cout << "Done" << endl;
 
-	namedWindow(WINDOW_NAME, WINDOW_AUTOSIZE);
-	imshow(WINDOW_NAME, sub);
+	// namedWindow(WINDOW_NAME, WINDOW_AUTOSIZE);
+	// imshow(WINDOW_NAME, sub);
 
-	waitKey(0);
+	// waitKey(0);
 
 	return 0;
 }

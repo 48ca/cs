@@ -25,7 +25,7 @@
 
 #define DO_LINES 1
 
-#define FRAMES 1
+#define FRAMES 100
 
 #define OUTFILE "OUT"
 
