@@ -246,7 +246,7 @@ int setLines(int numV, int limit) {
 	return num;
 }
 
-int main(int argc, char** argv) {
+void drawShape(cv::Mat mat) {
 
 	const uint32_t width = WIDTH;
 	const uint32_t height = HEIGHT;
@@ -337,5 +337,5 @@ int main(int argc, char** argv) {
 		buffer[y * width + x] = i < numVertices ? 255 : 125;
 	}
 
-	return buffer;
+	// return buffer;
 }

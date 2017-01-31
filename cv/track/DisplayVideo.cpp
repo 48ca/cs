@@ -33,7 +33,7 @@ int main(int argc, char** argv )
 
 	vector< vector<DMatch> > matches01;
 	vector< vector<DMatch> > matches10;
-	Ptr<DescriptorMatcher> matcher = BFMatcher::create();
+	Ptr<DescriptorMatcher> matcher = DescriptorMatcher::create("BruteForce-Hamming");
 
 	vector<DMatch> good_matches0;
 	vector<DMatch> good_matches1;
@@ -78,7 +78,14 @@ int main(int argc, char** argv )
 				good_matches1.push_back(matches10[i][0]);
 
 		vector<DMatch> symmetric_matches;
-		
+		for(i=0;i<good_matches0.size();++i) {
+			int j;
+			for(j=0;j<good_matches1.size();++j) {
+				if(good_matches0[i].queryIdx == good_matches1[j].trainIdx && good_matches1[j].queryIdx == good_matches0[i].trainIdx) {
+					symmetric_matches.push_back(DMatch(good_matches0[i].queryIdx,good_matches0[i].trainIdx, good_matches0[i].distance));
+				}
+			}
+		}
 		/*
 		for(KeyPoint kp : keypoints_frame0) {
 			Point2f pt = kp.pt;
@@ -87,7 +94,7 @@ int main(int argc, char** argv )
 
 		Mat output = frame0.clone();
 		// drawShape(output);
-		// drawMatches(frame0, keypoints_frame0, frame1, keypoints_frame1, matches01, output);
+		drawMatches(frame0, keypoints_frame0, frame1, keypoints_frame1, symmetric_matches, output);
 		
 		imshow("Display Video", output);
 		waitKey(30);
